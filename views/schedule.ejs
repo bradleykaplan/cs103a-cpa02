@@ -1,18 +1,37 @@
-<ul>
-    <% for (course of courses){%>
-        <li> 
-            <a href="/schedule/remove/<%= course._id %>">X</a>
-            <%= course['subject'] %>
-            <%= course.coursenum %>
-            <%= course.name %>
-            <%= course.term %>
-            
-        </li>
-    <% } %>
-</ul>
 
-<!--
-    <pre>
+<div class="d-flex flex-wrap text-center overflow-scroll m-3 p-3">
+    <% for (course of courses) {%>
+        <div class="p-3 m-3 border border-primary bg-light">
+            <h5>
+                Course: <%= course['subject'] %> <%= course.coursenum %> <br>
+                Course Name: <%= course.name %> <br>    
+            </h5>
+            Current Enrollment: <%=course.enrolled %>/<%=course.limit || 999 %> <br>
+            Instructor: <%= course.instructor[0] %> ,<%= course.instructor[1] %> <br>
+            <button type="button" class="btn btn-primary">
+                <a href="mailto:<%= course.instructor[2] %>">Email Instructor</a>
+            </button><br>
+            Term Offered: <%= course.term %> <br>
+
+            <hr>
+            <button type="button" class="btn btn-danger">
+                <a href="/schedule/remove/<%= course._id %>">Remove Course</a>
+            </button>
+        </div>
+    <% }%>
+    </div>
+
+
+    <!-- <pre>
         <%= JSON.stringify(courses,null,5) %>
-    </pre>
--->
+    </pre> -->
+
+<!-- 
+
+    <% if (course.strTimes== null){%>
+        Time: Not Listed <br>
+    <%} else if (course.strTimes.length==1){ %>
+        Time: <%= course.strTimes[0] %> <br>
+    <%} else if (course.strTimes>1){ %>
+        Time: <%= course.strTimes[0] %> <br>
+    <% } %> -->
