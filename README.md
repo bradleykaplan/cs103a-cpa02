@@ -24,3 +24,10 @@ and start the project with
 nodemon
 ```
 
+## Movie Link
+https://drive.google.com/drive/folders/1i3jUjbTY1AkyvENKshwcJLMgE5QIVJds?usp=sharing
+
+## If the app fails to start
+Unsure what causes this issue or if it's universal, but the app may fail to start with an err_dlopen_failed
+
+The solution we found to this was to remove and reinstall the bcrypt node module
