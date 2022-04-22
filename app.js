@@ -264,6 +264,25 @@ app.post('/courses/bySubject',
   }
 )
 
+//---------------------------------------------------------------
+//-----------------PA03 #4 Added By Nathan Cai-------------------
+//---------------------------------------------------------------
+app.post('/courses/byKeyword',
+  // show list of courses with a given keyword
+  async (req,res,next) => {
+    const {keyword} = req.body;
+    const courses = await Course.find({name:{$regex:keyword},independent_study:false}).sort({term:1,num:1,section:1})
+    // We parse the Courses that are not independent studies and use MongoDB's regex to find if the course has
+    // the string 'keyword' in it.
+
+    res.locals.courses = courses
+    res.render('courselist')
+  }
+)
+//---------------------------------------------------------------
+//---------------------------------------------------------------
+//---------------------------------------------------------------
+
 app.get('/courses/show/:courseId',
   // show all info about a course given its courseid
   async (req,res,next) => {
