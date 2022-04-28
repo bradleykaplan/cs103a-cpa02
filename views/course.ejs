@@ -5,7 +5,7 @@
             <%= course.coursenum %> 
             <%= course.term %> 
         </span>
-        <strong><%= course.name %></strong>
+        <strong><%= course.company_name %></strong>
         
     </div>
     <div class="mb-1">
@@ -13,7 +13,7 @@
         <%=course.instructor[1] %>
         (<%=course.instructor[2] %>)
     </div>
-    <div><a href="/addCourse/<%= course['_id'] %>">(add to schedule)</a></div>
+    <div><a href="/addCourse/<%= course['company_id'] %>">(add to schedule)</a></div>
     <div class="mb-1">
        Enrollment: <%=course.enrolled %>,
        Limit: <%=course.limit || 999 %>,

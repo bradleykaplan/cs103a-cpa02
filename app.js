@@ -34,7 +34,7 @@ const courses = require('./public/data/courses20-21.json')
 
 const mongoose = require( 'mongoose' );
 //const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
-const mongodb_URI = 'mongodb+srv://cs_sj:BrandeisSpr22@cluster0.kgugl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const mongodb_URI = 'mongodb+srv://bkaplan:firstdb@quiz5.ga08f.mongodb.net/test'
 //mongodb+srv://cs103a:<password>@cluster0.kgugl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
@@ -236,14 +236,16 @@ function time2str(time){
 
 app.get('/upsertDB',
   async (req,res,next) => {
-    //await Course.deleteMany({})
+    await Course.deleteMany({})
     for (course of courses){
-      const {subject,coursenum,section,term,times}=course;
-      const num = getNum(coursenum);
-      course.num=num
-      course.suffix = coursenum.slice(num.length)
-      course.strTimes = times2str(times)
-      await Course.findOneAndUpdate({subject,coursenum,section,term},course,{upsert:true})
+      const c = new Course(course)
+      await c.save()
+      //const {subject,coursenum,section,term,times}=course;
+      //const num = getNum(coursenum);
+      //course.num=num
+      //course.suffix = coursenum.slice(num.length)
+      //course.strTimes = times2str(times)
+      //await Course.findOneAndUpdate({subject,coursenum,section,term},course,{upsert:true})
     }
     const num = await Course.find({}).count();
     res.send("data uploaded: "+num)
@@ -254,8 +256,11 @@ app.get('/upsertDB',
 app.post('/courses/bySubject',
   // show list of courses in a given subject
   async (req,res,next) => {
-    const {subject} = req.body;
-    const courses = await Course.find({subject:subject,independent_study:false}).sort({term:1,num:1,section:1})
+    const {country} = req.body;
+    //let object = JSON.parse(JSON.stringify(req.body));
+    //let country1 = object.country
+    //const courses = await Course.find({country:{$regex:country}}).sort({overall_score:desc})
+    const courses = await Course.find({company_id: '0013b00001p1odRAAQ'})
     
     res.locals.courses = courses
     //res.locals.times2str = times2str
@@ -286,8 +291,8 @@ app.post('/courses/byKeyword',
 app.get('/courses/show/:courseId',
   // show all info about a course given its courseid
   async (req,res,next) => {
-    const {courseId} = req.params;
-    const course = await Course.findOne({_id:courseId})
+    const {company_id} = req.params;
+    const course = await Course.findOne({company_id:company_id})
     res.locals.course = course
     //res.locals.times2str = times2str
     //res.json(course)
