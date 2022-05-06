@@ -25,7 +25,7 @@ const Schedule = require('./models/Schedule')
 // *********************************************************** //
 //  Loading JSON datasets
 // *********************************************************** //
-const courses = require('./public/data/courses20-21.json')
+//const courses = require('./public/data/courses20-21.json')
 
 
 // *********************************************************** //
@@ -34,6 +34,7 @@ const courses = require('./public/data/courses20-21.json')
 
 const mongoose = require( 'mongoose' );
 //const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
+//use this eventually: const mongodb_URI = process.env.mongodb_URI
 const mongodb_URI = 'mongodb+srv://bkaplan:firstdb@quiz5.ga08f.mongodb.net/test'
 //mongodb+srv://cs103a:<password>@cluster0.kgugl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
@@ -259,8 +260,8 @@ app.post('/courses/bySubject',
     const {country} = req.body;
     //let object = JSON.parse(JSON.stringify(req.body));
     //let country1 = object.country
-    //const courses = await Course.find({country:{$regex:country}}).sort({overall_score:desc})
-    const courses = await Course.find({company_id: '0013b00001p1odRAAQ'})
+    const courses = await Course.find({country:{$regex:country, $options: 'i'},certification_cycle:'1',current_status:'certified'}).sort({overall_score:'desc'})
+    //const courses = await Course.find({company_id: '0013b00001p1odRAAQ'})
     
     res.locals.courses = courses
     //res.locals.times2str = times2str
@@ -272,11 +273,14 @@ app.post('/courses/bySubject',
 //---------------------------------------------------------------
 //-----------------PA03 #4 Added By Nathan Cai-------------------
 //---------------------------------------------------------------
+
+//or keyword:https://kb.objectrocket.com/mongo-db/or-in-mongoose-1018
+//or keyword:https://stackoverflow.com/questions/7382207/mongooses-find-method-with-or-condition-does-not-work-properly
 app.post('/courses/byKeyword',
   // show list of courses with a given keyword
   async (req,res,next) => {
     const {keyword} = req.body;
-    const courses = await Course.find({name:{$regex:keyword},independent_study:false}).sort({term:1,num:1,section:1})
+    const courses = await Course.find({$or:[{description:{$regex:keyword, $options: 'i'}}, {company_name:{$regex:keyword, $options: 'i'}}],certification_cycle:'1',current_status:'certified'}).sort({overall_score:'desc'})
     // We parse the Courses that are not independent studies and use MongoDB's regex to find if the course has
     // the string 'keyword' in it.
 
@@ -288,7 +292,7 @@ app.post('/courses/byKeyword',
 //---------------------------------------------------------------
 //---------------------------------------------------------------
 
-app.get('/courses/show/:courseId',
+app.get('/courses/show/:company_id',
   // show all info about a course given its courseid
   async (req,res,next) => {
     const {company_id} = req.params;

@@ -4,52 +4,43 @@ Here we want a ul list with the instructor, coursenum, title, term
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Semester</th>
-            <th>Course #</th>
-            <th>Course Title</th>
-            <th>Enr/Limit/Waiting</th>
-            <th>Times</th>
-            <th>Instructor</th>
+            <th>Company Name</th>
+            <th>Details</th>
+            <th>Overall Score</th>
+            <th>Industry</th>
+            <th>Country</th>
         </tr>
     </thead>
     <tbody></tbody>
     <% for (course of courses) {
+        const name = course.company_name;
+        const overall_score = course.overall_score;
+        const industry = course.industry;
         const country = course.country;
-        const name = course['company_name'];
-        const subject2 = course.country;
-        const inst = course['instructor'];
-        const term = course.term;
-        const sem = term%10;
-        const semester=['none','Spring 2021','Summer 2021','Fall 2020']
+
          %>
       <tr class="mb-2"> 
-        <td><%= semester[term%10] %></td>
+        <td><%= name %></td>
         <td>
             <a href="/courses/show/<%=course.company_id %>">
-            <%=  course['subject'] %>
-            <%=  course['coursenum'] %>  
-            (Section <%=  course['section'] %>) 
+            <%=  name %>
 
             </a>
         </td>
 
         <td>
-            <strong><%= country %></strong>
+            <strong><%= overall_score %></strong>
         </td>
 
         <td>
-            <%=course.enrolled %>/<%=course.limit || 999 %>/<%= course.waiting %>
+            <%=industry %>
         </td>
 
         <td>
-            <strong><%= country %></strong>
+            <%= country %>
         </td>
          <!-- <%= JSON.stringify(course.times) %> <br> -->
         
-
-        <td>
-            <strong><%= country %></strong>
-        </td>
     </tr>
     <% } %>
     </tbody>
