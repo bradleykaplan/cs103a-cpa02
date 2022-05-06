@@ -23,7 +23,7 @@ const Course = require('./models/Course')
 // *********************************************************** //
 //  Loading JSON datasets
 // *********************************************************** //
-//const courses = require('./public/data/courses20-21.json')
+const courses = require('./public/data/courses20-21.json')
 
 
 // *********************************************************** //
