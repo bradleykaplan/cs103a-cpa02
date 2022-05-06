@@ -32,7 +32,6 @@ const Course = require('./models/Course')
 
 const mongoose = require( 'mongoose' );
 const mongodb_URI = process.env.mongodb_URI
-//old: const mongodb_URI = 'mongodb+srv://bkaplan:firstdb@quiz5.ga08f.mongodb.net/test'
 
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings
@@ -112,10 +111,11 @@ app.get("/about", (req, res, next) => {
 app.get('/upsertDB',
   async (req,res,next) => {
     await Course.deleteMany({})
-    for (course of courses){
-      const c = new Course(course)
-      await c.save()
-    }
+    await Course.insertMany(courses)
+    // for (course of courses){
+    //   const c = new Course(course)
+    //   await c.save()
+    // }
     const num = await Course.find({}).count();
     res.send("data uploaded: "+num)
   }
