@@ -1,16 +1,16 @@
 <!--info about urls: https://www.w3schools.com/html/html_links.asp-->
 <div class="bg-light m-5 p-2 border border-primary border-2">
     <div class="">
-        <strong><%= course.company_name %></strong>
+        <strong><%= company.company_name %></strong>
     </div>
     <div class="mb-1">
        <br>
-       <%=course.description %>
+       <%=company.description %>
        <br>
        <br>
        Website:
-       <a href="https://<%=  course.website %>">
-           <%=  course.website %>
+       <a href="https://<%=  company.website %>">
+           <%=  company.website %>
     </a>
     </div>
 
@@ -19,6 +19,6 @@
 <hr>
 
 <!--<pre>
-    <%= JSON.stringify(course,null,5) %>
+    <%= JSON.stringify(company,null,5) %>
 </pre>
 -->

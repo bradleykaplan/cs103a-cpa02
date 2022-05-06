@@ -18,12 +18,12 @@ const axios = require("axios")
 // *********************************************************** //
 //  Loading models
 // *********************************************************** //
-const Course = require('./models/Course')
+const Company = require('./models/Company')
 
 // *********************************************************** //
 //  Loading JSON datasets
 // *********************************************************** //
-const courses = require('./public/data/courses20-21.json')
+const companies = require('./public/data/companies20-21.json')
 
 
 // *********************************************************** //
@@ -97,7 +97,7 @@ app.get("/about", (req, res, next) => {
 });
 
 /* ************************
-  Functions needed for the course finder routes
+  Functions needed for the company finder routes
    ************************ */
 
 
@@ -105,31 +105,27 @@ app.get("/about", (req, res, next) => {
 /* ************************
   Loading (or reloading) the data into a collection
    ************************ */
-// this route loads in the courses into the Course collection
-// or updates the courses if it is not a new collection
+// this route loads in the companies into the Company collection
+// or updates the companies if it is not a new collection
 
 app.get('/upsertDB',
   async (req,res,next) => {
-    await Course.deleteMany({})
-    await Course.insertMany(courses)
-    // for (course of courses){
-    //   const c = new Course(course)
-    //   await c.save()
-    // }
-    const num = await Course.find({}).count();
+    await Company.deleteMany({})
+    await Company.insertMany(companies)
+    const num = await Company.find({}).count();
     res.send("data uploaded: "+num)
   }
 )
 
 
-app.post('/courses/bySubject',
-  // show list of courses in a given subject
+app.post('/companies/byCountry',
+  // show list of companies in a given country
   async (req,res,next) => {
     const {country} = req.body;
-    const courses = await Course.find({country:{$regex:country, $options: 'i'},certification_cycle:'1',current_status:'certified'}).sort({overall_score:'desc'})
+    const companies = await Company.find({country:{$regex:country, $options: 'i'},certification_cycle:'1',current_status:'certified'}).sort({overall_score:'desc'})
     
-    res.locals.courses = courses
-    res.render('courselist')
+    res.locals.companies = companies
+    res.render('companylist')
   }
 )
 
@@ -139,29 +135,29 @@ app.post('/courses/bySubject',
 
 //or keyword:https://kb.objectrocket.com/mongo-db/or-in-mongoose-1018
 //or keyword:https://stackoverflow.com/questions/7382207/mongooses-find-method-with-or-condition-does-not-work-properly
-app.post('/courses/byKeyword',
-  // show list of courses with a given keyword
+app.post('/companies/byKeyword',
+  // show list of companies with a given keyword
   async (req,res,next) => {
     const {keyword} = req.body;
-    const courses = await Course.find({$or:[{description:{$regex:keyword, $options: 'i'}}, {company_name:{$regex:keyword, $options: 'i'}}],certification_cycle:'1',current_status:'certified'}).sort({overall_score:'desc'})
-    // We parse the Courses that are not independent studies and use MongoDB's regex to find if the course has
-    // the string 'keyword' in it.
+    const companies = await Company.find({$or:[{description:{$regex:keyword, $options: 'i'}}, {company_name:{$regex:keyword, $options: 'i'}}],certification_cycle:'1',current_status:'certified'}).sort({overall_score:'desc'})
+    // We parse the Companies that are currently certified and have the most recent score and use MongoDB's regex to find if the company has
+    // the string 'keyword' in its description or name.
 
-    res.locals.courses = courses
-    res.render('courselist')
+    res.locals.companies = companies
+    res.render('companylist')
   }
 )
 //---------------------------------------------------------------
 //---------------------------------------------------------------
 //---------------------------------------------------------------
 
-app.get('/courses/show/:company_id',
-  // show all info about a course given its courseid
+app.get('/companies/show/:company_id',
+  // show all info about a company given its companyid
   async (req,res,next) => {
     const {company_id} = req.params;
-    const course = await Course.findOne({company_id:company_id})
-    res.locals.course = course
-    res.render('course')
+    const company = await Company.findOne({company_id:company_id})
+    res.locals.company = company
+    res.render('company')
   }
 )
 

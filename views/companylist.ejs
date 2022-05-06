@@ -1,5 +1,4 @@
-<h1>The courses are</h1>
-Here we want a ul list with the instructor, coursenum, title, term
+<h1>The companies are</h1>
 <hr>
 <table class="table table-bordered table-striped">
     <thead>
@@ -12,17 +11,17 @@ Here we want a ul list with the instructor, coursenum, title, term
         </tr>
     </thead>
     <tbody></tbody>
-    <% for (course of courses) {
-        const name = course.company_name;
-        const overall_score = course.overall_score;
-        const industry = course.industry;
-        const country = course.country;
+    <% for (company of companies) {
+        const name = company.company_name;
+        const overall_score = company.overall_score;
+        const industry = company.industry;
+        const country = company.country;
 
          %>
       <tr class="mb-2"> 
         <td><%= name %></td>
         <td>
-            <a href="/courses/show/<%=course.company_id %>">
+            <a href="/companies/show/<%=company.company_id %>">
             <%=  name %>
 
             </a>
@@ -39,7 +38,7 @@ Here we want a ul list with the instructor, coursenum, title, term
         <td>
             <%= country %>
         </td>
-         <!-- <%= JSON.stringify(course.times) %> <br> -->
+         <!-- <%= JSON.stringify(company.times) %> <br> -->
         
     </tr>
     <% } %>
@@ -48,6 +47,6 @@ Here we want a ul list with the instructor, coursenum, title, term
 
 <pre>
     <!-- 
-        <%= JSON.stringify(courses,null,5) %> 
+        <%= JSON.stringify(companies,null,5) %> 
     -->
 </pre>

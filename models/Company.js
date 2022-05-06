@@ -5,7 +5,7 @@ const ObjectId = Schema.Types.ObjectId;
 const Mixed = Schema.Types.Mixed;
 const Date = String;//Schema.Types.Date
 
-var courseSchema = Schema( {
+var companySchema = Schema( {
     company_id: Mixed,
     company_name: Mixed,
     date_first_certified: Date,//will this work???
@@ -135,4 +135,4 @@ var courseSchema = Schema( {
     certification_cycle: Number,
 } );
 
-module.exports = mongoose.model( 'Course', courseSchema );
+module.exports = mongoose.model( 'Company', companySchema );
