@@ -26,7 +26,7 @@ Use the textboxes to search for B Corporations by country or keyword, then click
 Log in to Brandeis email to view:
 https://drive.google.com/file/d/1yXjpkUP2Ugm677P4LHZwMv-Rn5V0Se1Y/view?usp=sharing
 
-## Pitch Link:
+## Pitch Link
 Log in to Brandeis email to view:
 https://drive.google.com/file/d/1Ub_dsu5wC2tcCEvLbEqgjFPR7IJq9HRu/view?usp=sharing
 
