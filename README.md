@@ -19,6 +19,10 @@ Populate the database by typing into browser
 ```
 localhost:5000/upsertDB
 ```
+Finally, type this into browser to get started
+```
+localhost:5000
+```
 
 Use the textboxes to search for B Corporations by country or keyword, then click on the hyperlinked name of each company for details and its website.
 ##Screenshots:
