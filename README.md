@@ -13,15 +13,7 @@ npm install
 ```
 Start the project with
 ``` bash
-node app.js
-```
-or install nodemon (the node monitoring app) with
-``` bash
-npm install -g nodemon
-```
-and start the project with
-``` bash
-nodemon
+bash startup.sh
 ```
 
 ## Movie Link
