@@ -15,6 +15,11 @@ Start the project with
 export mongodb_URI=[your db URI]
 npm start
 ```
+Populate the database by typing into browser
+```
+localhost:5000/upsertDB
+```
+
 Use the textboxes to search for B Corporations by country or keyword, then click on the hyperlinked name of each company for details and its website.
 ##Screenshots:
 ![Screen Shot 2022-05-08 at 8 18 15 PM](https://user-images.githubusercontent.com/58448238/167321909-d90e49d7-cd1d-4bf0-bc6b-4adf57cfae15.png)
