@@ -22,9 +22,13 @@ Use the textboxes to search for B Corporations by country or keyword, then click
 ![Screen Shot 2022-05-08 at 8 18 32 PM](https://user-images.githubusercontent.com/58448238/167321918-42d023e6-5d56-4e67-9fff-4d8240155fc2.png)
 
 
-## Movie Link
+## Demo Link
 Log in to Brandeis email to view:
 https://drive.google.com/file/d/1yXjpkUP2Ugm677P4LHZwMv-Rn5V0Se1Y/view?usp=sharing
+
+## Pitch Link:
+Log in to Brandeis email to view:
+https://drive.google.com/file/d/1Ub_dsu5wC2tcCEvLbEqgjFPR7IJq9HRu/view?usp=sharing
 
 ## If the app fails to start
 Unsure what causes this issue or if it's universal, but the app may fail to start with an err_dlopen_failed
