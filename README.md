@@ -23,7 +23,8 @@ Use the textboxes to search for B Corporations by country or keyword, then click
 
 
 ## Movie Link
-
+Log in to Brandeis email to view:
+https://drive.google.com/file/d/1yXjpkUP2Ugm677P4LHZwMv-Rn5V0Se1Y/view?usp=sharing
 
 ## If the app fails to start
 Unsure what causes this issue or if it's universal, but the app may fail to start with an err_dlopen_failed
