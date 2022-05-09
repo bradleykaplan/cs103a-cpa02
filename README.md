@@ -13,7 +13,7 @@ npm install
 ```
 Start the project with
 ``` bash
-bash startup.sh
+node app.js
 ```
 
 ## Movie Link
